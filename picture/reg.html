@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('path/to/your/image.jpg'); /* Update the image path here */
+            background-size: cover; /* Ensures the image covers the entire background */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            background-position: center; /* Centers the image */
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"], button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            padding: 10px 0;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .message {
+            display: none;
+            color: green;
+            margin-top: 20px;
+        }
+        section {
+            display: none;
+            padding: 20px;
+        }
+        .active {
+            display: block;
+        }
+        .back-arrow {
+            display: inline-block;
+            cursor: pointer;
+            font-size: 24px;
+            color: #f44336; /* Red color for the arrow */
+            margin-bottom: 10px; /* Space between arrow and content */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar at the Top -->
+<nav>
+    <a href="#" onclick="showSubSection('payment')">Payment Details</a>
+    <a href="#" onclick="showSubSection('documents')">View Required Documents</a>
+</nav>
+
+<div class="container">
+    <!-- Login Section -->
+    <section id="login" class="active">
+        <h2>Login</h2>
+        <form id="loginForm" onsubmit="event.preventDefault(); showSection('mode_of_study');">
+            <label for="role">Login As</label>
+            <select id="role" name="role">
+                <option value="student">Student</option>
+                <option value="staff">Staff</option>
+            </select><br><br>
+
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required><br><br>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required><br><br>
+
+            <input type="submit" value="Login">
+        </form>
+        <p>Don't have an account? <a href="#" onclick="showSection('signup')">Sign Up</a></p>
+    </section>
+
+    <!-- Sign-Up Section -->
+    <section id="signup">
+        <h2>Sign Up</h2>
+        <form id="signupForm" onsubmit="event.preventDefault(); showSection('login');">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="username_signup">Username</label>
+            <input type="text" id="username_signup" name="username_signup" required><br><br>
+
+            <label for="password_signup">Password</label>
+            <input type="password" id="password_signup" name="password_signup" required><br><br>
+
+            <input type="submit" value="Sign Up">
+        </form>
+        <p>Already have an account? <a href="#" onclick="showSection('login')">Login here</a></p>
+    </section>
+
+   <!-- Mode of Study Section -->
+<section id="mode_of_study">
+    <h2>Mode of Study</h2>
+    <p>Select your mode of study:</p>
+    <button onclick="goToRegistration('scholarship')">Government Scholarship</button><br><br>
+    <button onclick="goToRegistration('self_funding')">Self-Funding</button><br><br>
+    <button onclick="goToRegistration('in_service')">In-Service</button><br><br>
+</section>
+
+    <!-- Payment Section -->
+    <section id="payment">
+        <span class="back-arrow" onclick="showSection('mode_of_study')">←</span> <!-- Back Arrow -->
+        <h3>Payment Details</h3>
+        <ul>
+            <li>New Students: NU 4300</li>
+            <li>Old Students: NU 100</li>
+            <li>Self-Funding: NU 46925</li>
+            <li>Back Semester: NU 27000</li>
+            <li>In-Service: NU 44925</li>
+            <li>Back Paper: NU 9000</li>
+        </ul>
+    </section>
+
+    <!-- Document Viewing Section -->
+    <section id="documents">
+        <span class="back-arrow" onclick="showSection('mode_of_study')">←</span> <!-- Back Arrow -->
+        <h3>Required Documents</h3>
+        <ul>
+            <li>Class X Marksheet and Pass Certificate (PDF)</li>
+            <li>Class XII Marksheet and Pass Certificate (PDF)</li>
+            <li>Certificate of Leadership (if any) (PDF)</li>
+            <li>Transfer and Character Certificate (PDF)</li>
+            <li>CID or Letter from Immigration and Census (PDF)</li>
+        </ul>
+        <p><strong>Note:</strong> All documents must be submitted together in PDF format during registration.</p>
+    </section>
+
+    <!-- Student Registration Form Section -->
+<section id="registration">
+    <span class="back-arrow" onclick="goBackToModeOfStudy()">←</span> <!-- Back Arrow -->
+    <h3>Student Registration Form</h3>
+    <form id="registrationForm" onsubmit="displayMessage(); return false;">
+        <h4>Student Details</h4>
+        <label for="student_name">Student Name</label>
+        <input type="text" id="student_name" name="student_name" required><br><br>
+
+        <label for="cid">CID</label>
+        <input type="text" id="cid" name="cid" required><br><br>
+
+        <label for="department">Department</label>
+        <select id="department" name="department" required>
+            <option value="information_and_technology">Information and Technology</option>
+            <option value="civil_engineering_and_surveying">Civil Engineering and Surveying</option>
+            <option value="electrical_engineering">Electrical Engineering</option>
+            <option value="electronics_and_communication_engineering">Electronics and Communication Engineering</option>
+            <option value="humanities_and_management">Humanities and Management</option>
+        </select><br><br>
+
+        <label for="program">Program</label>
+        <select id="program" name="program" required>
+            <option value="diploma_civil_engineering">Diploma in Civil Engineering</option>
+            <option value="diploma_electrical_engineering">Diploma in Electrical Engineering</option>
+            <option value="diploma_mechanical_engineering">Diploma in Mechanical Engineering</option>
+            <option value="diploma_electronics_and_communication_engineering">Diploma in Electronics and Communication Engineering</option>
+            <option value="diploma_surveying">Diploma in Surveying</option>
+            <option value="diploma_computer_system_and_network">Diploma in Computer System and Network</option>
+            <option value="diploma_materials_and_procurement_management">Diploma in Materials and Procurement Management</option>
+            <option value="diploma_construction_supervision">Diploma in Construction Supervision</option>
+            <option value="diploma_in_multimedia_and_animation">Diploma in Multimedia and Animation</option>
+            <option value="be_power_engineering">B.E. in Power Engineering</option>
+            <option value="be_mechanical_engineering">B.E. in Mechanical Engineering</option>
+            <option value="be_surveying_and_geoinformatics">B.E. in Surveying and Geoinformatics</option>
+        </select><br><br>
+
+        <label for="year">Year</label>
+        <select id="year" name="year" required>
+            <option value="1">1st Year</option>
+            <option value="2">2nd Year</option>
+            <option value="3">3rd Year</option>
+            <option value="4">4th Year</option>
+        </select><br><br>
+
+        <label for="semester">Semester</label>
+        <select id="semester" name="semester" required>
+            <option value="spring">Spring</option>
+            <option value="summer">Summer</option>
+            <option value="autumn">Autumn</option>
+            <option value="winter">Winter</option>
+        </select><br><br>
+
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select><br><br>
+
+        <label for="blood_group">Blood Group</label>
+        <input type="text" id="blood_group" name="blood_group" required><br><br>
+
+        <label for="permanent_address">Permanent Address</label>
+        <input type="text" id="permanent_address" name="permanent_address" placeholder="Dzongkhag/Gewog/Village" required><br><br>
+
+        <label for="present_address">Present Address</label>
+        <input type="text" id="present_address" name="present_address" placeholder="Dzongkhag/Gewog/Village" required><br><br>
+
+        <h4>Parent Details</h4>
+        
+        <label for="parent_name">Parent's Name</label>
+        <input type="text" id="parent_name" name="parent_name" required><br><br>
+
+        <label for="relationship">Relationship</label>
+        <select id="relationship" name="relationship" required>
+            <option value="father">Father</option>
+            <option value="mother">Mother</option>
+            <option value="guardian">Guardian</option>
+        </select><br><br>
+
+        <label for="occupation">Occupation</label>
+        <input type="text" id="occupation" name="occupation" required><br><br>
+
+        <label for="parent_phone">Phone Number</label>
+        <input type="tel" id="parent_phone" name="parent_phone" required><br><br>
+
+        <label for="parent_permanent_address">Permanent Address</label>
+        <input type="text" id="parent_permanent_address" name="parent_permanent_address" placeholder="Dzongkhag/Gewog/Village" required><br><br>
+
+        <label for="parent_present_address">Present Address</label>
+        <input type="text" id="parent_present_address" name="parent_present_address" placeholder="Dzongkhag/Gewog/Village" required><br><br>
+
+        <!-- Document Upload Section -->
+            <h4>Upload Personal Documents</h4>
+            <label for="personal_document">Upload Personal Documents (PDF)</label>
+            <input type="file" id="personal_document" name="personal_document" accept="application/pdf" required><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+        <p id="message" class="message">You have registered successfully! We will notify you soon.</p>
+    </section>
+</div>
+
+<script>
+    let previousSection = 'login'; // Variable to keep track of the previous section
+    let lastViewedSection = ''; // To track the last viewed section
+
+    function showSection(section) {
+        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+        document.getElementById(section).classList.add('active');
+        lastViewedSection = section; // Update last viewed section
+    }
+
+    function showSubSection(sectionId) {
+        // Hide all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.display = 'none';
+        });
+
+        // Show the selected section
+        document.getElementById(sectionId).style.display = 'block';
+
+        // Update the last viewed section
+        lastViewedSection = sectionId;
+    }
+
+    function goBack() {
+        // Hide all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.display = 'none';
+        });
+
+        // Show the last viewed section
+        document.getElementById(lastViewedSection).style.display = 'block';
+    }
+
+    function goBackToModeOfStudy() {
+        // Show the mode of study section
+        showSection('mode_of_study');
+    }
+
+    function goToRegistration(mode) {
+        // Here you can add logic to handle the registration based on the mode
+        showSection('registration');
+    }
+
+    function displayMessage() {
+        // Display a success message upon form submission
+        const message = document.getElementById('message');
+        message.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
