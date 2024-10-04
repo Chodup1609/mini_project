@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <link rel="stylesheet" href="registration_form.css">
+    <script>
+        function showMessage(event) {
+            event.preventDefault(); // Prevent the default form submission
+            document.getElementById("message").style.display = "block"; // Show the message
+        }
+    </script>
+</head>
+<body>
+    <!-- Back Arrow -->
+    <a class="back-arrow" href="mode_of_study.html">← Back to Mode of Study</a> <!-- Change the link if necessary -->
+
+    <div class="container">
+        <h3>Student Registration Form</h3>
+        <form id="registrationForm" onsubmit="showMessage(event)">
+            <h4>Student Details</h4>
+            <label for="student_name">Student Name</label>
+            <input type="text" id="student_name" name="student_name" required><br><br>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required><br><br>
+
+            <label for="cid">CID</label>
+            <input type="text" id="cid" name="cid" required><br><br>
+
+            <label for="department">Department</label>
+            <select id="department" name="department" required>
+                <option value="information_and_technology">Information and Technology</option>
+                <option value="civil_engineering_and_surveying">Civil Engineering and Surveying</option>
+                <option value="electrical_engineering">Electrical Engineering</option>
+                <option value="electronics_and_communication_engineering">Electronics and Communication Engineering</option>
+                <option value="humanities_and_management">Humanities and Management</option>
+            </select><br><br>
+
+            <label for="program">Program</label>
+            <select id="program" name="program" required>
+                <option value="diploma_civil_engineering">Diploma in Civil Engineering</option>
+                <option value="diploma_electrical_engineering">Diploma in Electrical Engineering</option>
+                <option value="diploma_mechanical_engineering">Diploma in Mechanical Engineering</option>
+                <option value="diploma_electronics_and_communication_engineering">Diploma in Electronics and Communication Engineering</option>
+                <option value="diploma_surveying">Diploma in Surveying</option>
+                <option value="diploma_computer_system_and_network">Diploma in Computer System and Network</option>
+                <option value="diploma_materials_and_procurement_management">Diploma in Materials and Procurement Management</option>
+                <option value="diploma_construction_supervision">Diploma in Construction Supervision</option>
+                <option value="diploma_in_multimedia_and_animation">Diploma in Multimedia and Animation</option>
+                <option value="be_power_engineering">B.E. in Power Engineering</option>
+                <option value="be_mechanical_engineering">B.E. in Mechanical Engineering</option>
+                <option value="be_surveying_and_geoinformatics">B.E. in Surveying and Geoinformatics</option>
+            </select><br><br>
+
+            <label for="year">Year</label>
+            <select id="year" name="year" required>
+                <option value="1">1st Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">3rd Year</option>
+                <option value="4">4th Year</option>
+            </select><br><br>
+    
+            <label for="semester">Semester</label>
+            <select id="semester" name="semester" required>
+                <option value="spring">Spring</option>
+                <option value="summer">Summer</option>
+                <option value="autumn">Autumn</option>
+                <option value="winter">Winter</option>
+            </select><br><br>
+    
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select><br><br>
+    
+            <label for="blood_group">Blood Group</label>
+            <input type="text" id="blood_group" name="blood_group" required><br><br>
+    
+            <label for="permanent_address">Permanent Address</label>
+            <input type="text" id="permanent_address" name="permanent_address" placeholder="Dzongkhag/Gewog/Village" required><br><br>
+    
+            <label for="present_address">Present Address</label>
+            <input type="text" id="present_address" name="present_address" placeholder="Dzongkhag/Gewog/Village" required><br><br>
+    
+            <label for="student_phone">Phone Number</label>
+            <input type="tel" id="student_phone" name="student_phone" required><br><br>
+
+            <h4>Parent Details</h4>
+            
+            <label for="parent_name">Parent's Name</label>
+            <input type="text" id="parent_name" name="parent_name" required><br><br>
+    
+            <label for="relationship">Relationship</label>
+            <select id="relationship" name="relationship" required>
+                <option value="father">Father</option>
+                <option value="mother">Mother</option>
+                <option value="guardian">Guardian</option>
+            </select><br><br>
+    
+            <label for="occupation">Occupation</label>
+            <input type="text" id="occupation" name="occupation" required><br><br>
+    
+            <label for="parent_phone">Phone Number</label>
+            <input type="tel" id="parent_phone" name="parent_phone" required><br><br>
+    
+            <label for="parent_permanent_address">Permanent Address</label>
+            <input type="text" id="parent_permanent_address" name="parent_permanent_address" placeholder="Dzongkhag/Gewog/Village" required><br><br>
+    
+            <label for="parent_present_address">Present Address</label>
+            <input type="text" id="parent_present_address" name="parent_present_address" placeholder="Dzongkhag/Gewog/Village" required><br><br>
+    
+            <!-- Document Upload Section -->
+            <h4>Upload Personal Documents</h4>
+            <label for="personal_document">Upload Personal Documents (PDF)</label>
+            <input type="file" id="personal_document" name="personal_document" accept="application/pdf" required><br><br>
+    
+            <h4>Payment Information</h4>
+            <label for="payment_screenshot">Upload Payment Screenshot (JPG, PNG)</label>
+            <input type="file" id="payment_screenshot" name="payment_screenshot" accept="image/jpeg, image/png" required><br><br>
+    
+            <input type="submit" value="Submit">
+        </form>
+        <p id="message" class="message" style="display:none;">You have registered successfully! We will notify you soon.</p>
+    </div>
+</body>
+</html>

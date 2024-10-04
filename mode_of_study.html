@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mode of Study</title>
+    <link rel="stylesheet" href="mode_of_study.css">
+</head>
+<body>
+    <!-- Navigation Bar at the Top -->
+    <nav>
+        <label for="detailsDropdown">Details:</label>
+        <select id="detailsDropdown" onchange="handleDropdownChange(this)">
+            <option value="">Select an option</option>
+            <option value="payment">Payment Details</option>
+            <option value="documents">View Required Documents</option>
+        </select>
+    </nav>
+
+    <div class="container" id="mode_of_study">
+        <h2>Select Mode of Study</h2>
+        <button onclick="goToRegistration('scholarship')">Government Scholarship</button><br><br>
+        <button onclick="goToRegistration('self_funding')">Self-Funding</button><br><br>
+        <button onclick="goToRegistration('in_service')">In-Service</button><br><br>
+    </div>
+
+    <!-- Payment Section -->
+    <section id="payment" style="display: none;">
+        <span class="back-arrow" onclick="showSection('mode_of_study')">← Back to Mode of Study</span> <!-- Back Arrow -->
+        <h3>Payment Details</h3>
+        <ul>
+            <li>New Students: NU 4300</li>
+            <li>Old Students: NU 100</li>
+            <li>Self-Funding: NU 46925</li>
+            <li>Back Semester: NU 27000</li>
+            <li>In-Service: NU 44925</li>
+            <li>Back Paper: NU 9000</li>
+        </ul>
+    </section>
+
+    <!-- Document Viewing Section -->
+    <section id="documents" style="display: none;">
+        <span class="back-arrow" onclick="showSection('mode_of_study')">← Back to Mode of Study</span> <!-- Back Arrow -->
+        <h3>Required Documents</h3>
+        <ul>
+            <li>Class X Marksheet and Pass Certificate (PDF)</li>
+            <li>Class XII Marksheet and Pass Certificate (PDF)</li>
+            <li>Certificate of Leadership (if any) (PDF)</li>
+            <li>Transfer and Character Certificate (PDF)</li>
+            <li>CID or Letter from Immigration and Census (PDF)</li>
+        </ul>
+        <p><strong>Note:</strong> All documents must be submitted together in PDF format during registration.</p>
+    </section>
+
+    <script>
+        function handleDropdownChange(selectElement) {
+            const selectedValue = selectElement.value;
+
+            // Hide both sections
+            document.getElementById('payment').style.display = 'none';
+            document.getElementById('documents').style.display = 'none';
+
+            // Show the selected section
+            if (selectedValue === 'payment') {
+                document.getElementById('payment').style.display = 'block';
+            } else if (selectedValue === 'documents') {
+                document.getElementById('documents').style.display = 'block';
+            }
+        }
+
+        function showSection(sectionId) {
+            // Hide both sections
+            document.getElementById('payment').style.display = 'none';
+            document.getElementById('documents').style.display = 'none';
+
+            // Show the mode of study container
+            document.getElementById('mode_of_study').style.display = 'block';
+        }
+
+        function goToRegistration(mode) {
+            // Redirect to the registration form (Assuming registration_form.html handles the registration based on mode)
+            window.location.href = "registration_form.html?mode=" + mode;
+        }
+    </script>
+</body>
+</html>

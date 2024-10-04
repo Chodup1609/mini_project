@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required><br><br>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required><br><br>
+
+            <label for="role">Login As</label>
+            <select id="role" name="role">
+                <option value="student">Student</option>
+                <option value="staff">Staff</option>
+            </select><br><br>
+
+            <input type="submit" value="Login">
+        </form>
+        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting the traditional way
+
+            // Assuming you would normally validate the login details here
+            // For example, check if username and password match a database entry
+
+            // Redirect to the Mode of Study page after "login"
+            window.location.href = "mode_of_study.html";
+        });
+    </script>
+</body>
+</html>
+
