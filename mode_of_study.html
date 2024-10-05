@@ -7,6 +7,23 @@
     <link rel="stylesheet" href="mode_of_study.css">
 </head>
 <body>
+    <!-- Dropdown Menu on the Top Right -->
+    <div class="top-right-menu">
+        <div class="dropdown">
+            <button class="dropdown-btn">Menu</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="logout()">Logout</a>
+                <a href="#" onclick="showAboutUs()">About Us</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Section -->
+    <div class="about-us" id="aboutUs">
+        <h3>About Us</h3>
+        <p>This is the official platform for students of JNEC to select their mode of study, submit their required documents, and view payment details. The platform is designed to help both students and staff in streamlining the registration process.</p>
+        <button onclick="hideAboutUs()"></button>
+     </div>
     <!-- Navigation Bar at the Top -->
     <nav>
         <label for="detailsDropdown">Details:</label>
@@ -22,7 +39,11 @@
         <button onclick="goToRegistration('scholarship')">Government Scholarship</button><br><br>
         <button onclick="goToRegistration('self_funding')">Self-Funding</button><br><br>
         <button onclick="goToRegistration('in_service')">In-Service</button><br><br>
+        
     </div>
+
+
+
 
     <!-- Payment Section -->
     <section id="payment" style="display: none;">
@@ -53,6 +74,16 @@
     </section>
 
     <script>
+         function logout() {
+            alert('You have been logged out.');
+            window.location.href = "login.html"; // Redirect to login page
+        }
+
+        function hideAboutUs() {
+            const aboutUsSection = document.getElementById('aboutUs');
+            aboutUsSection.style.display = 'none';
+            document.getElementById('mode_of_study').style.display = 'block'; // Show the main mode of study section again
+        }
         function handleDropdownChange(selectElement) {
             const selectedValue = selectElement.value;
 
@@ -82,5 +113,6 @@
             window.location.href = "registration_form.html?mode=" + mode;
         }
     </script>
+    
 </body>
 </html>

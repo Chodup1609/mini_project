@@ -7,12 +7,15 @@
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container bg-4">
         <h2>Login</h2>
         <form id="loginForm">
 
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required><br><br>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required><br><br>
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required><br><br>
@@ -32,13 +35,32 @@
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent form from submitting the traditional way
 
-            // Assuming you would normally validate the login details here
-            // For example, check if username and password match a database entry
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const role = document.getElementById('role').value;
 
-            // Redirect to the Mode of Study page after "login"
-            window.location.href = "mode_of_study.html";
+            const studentRegex = /^[0-9]+\.jnec@rub\.edu\.bt$/;  // Numbers before ".jnec@rub.edu.bt"
+            const staffRegex = /^[a-zA-Z]+\.jnec@rub\.edu\.bt$/; // Letters before ".jnec@rub.edu.bt"
+
+            // Validate email based on role
+            if (role === 'student' && !studentRegex.test(email)) {
+                alert('Invalid student email. Use a number before ".jnec@rub.edu.bt"');
+                return;
+            }
+
+            if (role === 'staff' && !staffRegex.test(email)) {
+                alert('Invalid staff email. Use a name before ".jnec@rub.edu.bt"');
+                return;
+            }
+
+            // Perform additional login validations such as password check (if needed)
+            // If email and role validation passes, you can proceed with logging in
+            if (role === 'student') {
+                window.location.href = "mode_of_study.html"; // Redirect to Student Interface
+            } else if (role === 'staff') {
+                window.location.href = "staff_interface.html"; // Redirect to Staff Interface
+            }
         });
     </script>
 </body>
 </html>
-
