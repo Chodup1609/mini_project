@@ -17,8 +17,8 @@
             const personalDocumentSection = document.getElementById("personalDocumentSection");
             const paymentSection = document.getElementById("paymentSection");
 
-            // Show both sections for 1st year, 1st semester students only
-            if (year === "1" && semester === "spring") {
+            // Show both sections for 1st year, spring or summer semester students only
+            if (year === "1" && (semester === "summer")) {
                 personalDocumentSection.style.display = "block";
                 paymentSection.style.display = "block";
             }
