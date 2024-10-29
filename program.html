@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Management</title>
+    <script>
+        // Function to get query parameters from the URL
+        function getQueryParams(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Display programs based on the selected department
+        window.onload = function() {
+            const department = getQueryParams('department');
+            const departmentHeading = document.getElementById('departmentHeading');
+
+            // Define programs based on department
+            const programs = {
+                'information_and_technology': ['Computer System and Network', 'Multimedia Animation'],
+                'civil_engineering_and_surveying': [
+                    'Diploma in Surveying',
+                    'Diploma in Construction Supervision',
+                    'B.E. in Surveying and Geoinformatics'
+                ],
+                'electrical_engineering': [
+                    'Diploma in Electrical Engineering',
+                    'Diploma in Electronics and Communication',
+                    'B.E. in Power Engineering'
+                ],
+                'humanities_and_management': [
+                    'Diploma in Materials and Procurement Management'
+                ],
+                'mechanical_engineering': [
+                    'Diploma in Mechanical Engineering',
+                    'B.E. in Mechanical Engineering'
+                ]
+            };
+
+            // Set department heading and populate program list
+            departmentHeading.innerText = department.replace(/_/g, ' ').toUpperCase(); // Format heading
+
+            const programList = document.getElementById('programList');
+
+            // Populate the program list
+            if (programs[department]) {
+                programs[department].forEach(program => {
+                    const li = document.createElement('li');
+                    li.textContent = program;
+                    programList.appendChild(li);
+                });
+            } else {
+                programList.innerHTML = '<li>No programs available.</li>';
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        li {
+            margin: 5px 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h2 id="departmentHeading">Department Name</h2>
+    <ul id="programList">
+        <!-- Programs will be populated here -->
+    </ul>
+</body>
+</html>
