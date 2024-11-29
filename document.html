@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Upload</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-light">
+    <div class="container my-5">
+        <!-- Back Arrow Button -->
+        <div class="d-flex justify-content-start mb-3">
+            <button class="btn btn-outline-primary" onclick="goBack()">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h4><i class="fa-solid fa-upload"></i> Document Upload</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-center">Please upload the necessary documents for verification. Each document must be uploaded in PDF format.</p>
+
+                        <!-- Document Upload Section -->
+                        <div class="mb-3">
+                            <label for="classXMarksheet" class="form-label"><i class="fa-solid fa-file-pdf"></i> Class X Marksheet and Pass Certificate (PDF)</label>
+                            <input type="file" id="classXMarksheet" class="form-control" accept=".pdf">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="classXII_Marksheet" class="form-label"><i class="fa-solid fa-file-pdf"></i> Class XII Marksheet and Pass Certificate (PDF)</label>
+                            <input type="file" id="classXII_Marksheet" class="form-control" accept=".pdf">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="leadershipCertificate" class="form-label"><i class="fa-solid fa-file-pdf"></i> Certificate of Leadership (if any) (PDF)</label>
+                            <input type="file" id="leadershipCertificate" class="form-control" accept=".pdf">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="transferCertificate" class="form-label"><i class="fa-solid fa-file-pdf"></i> Transfer and Character Certificate (PDF)</label>
+                            <input type="file" id="transferCertificate" class="form-control" accept=".pdf">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="cidLetter" class="form-label"><i class="fa-solid fa-file-pdf"></i> CID or Letter from Immigration and Census (PDF)</label>
+                            <input type="file" id="cidLetter" class="form-control" accept=".pdf">
+                        </div>
+
+                        <!-- Next Button -->
+                        <div class="mt-4 text-center">
+                            <button class="btn btn-primary" onclick="nextStep()">
+                                <i class="fa-solid fa-arrow-right"></i> Next
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function goBack() {
+            alert('You are being redirected to the previous page.');
+            // Add actual navigation logic here if needed
+        }
+
+        function goBack() {
+        window.location.href = "registration_form.html"; // Returns to the previous page
+    }
+
+        function nextStep() {
+            alert('Proceeding to the next step.');
+            // Implement logic for the next step here
+        }
+    </script>
+</body>
+</html>
