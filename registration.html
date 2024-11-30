@@ -21,12 +21,35 @@
 
         function toggleUploadSections() {
             const year = document.getElementById("year").value;
-            const semester = document.getElementById("semester").value;
+            const semester = document.getElementById("semester");
             const personalDocumentSection = document.getElementById("personalDocumentSection");
             const paymentSection = document.getElementById("paymentSection");
 
             // Show both sections for 1st year, summer semester students only
-            if (year === "1" && semester === "summer") {
+            if (year === "1") {
+                semester.innerHTML = `
+                    <option value="first-semester">First Semester</option>
+                    <option value="second-semester">Second Semester</option>
+                `;
+            } else if (year === "2") {
+                semester.innerHTML = `
+                    <option value="third-semester">Third Semester</option>
+                    <option value="fourth-semester">Fourth Semester</option>
+                `;
+            } else if (year === "3") {
+                semester.innerHTML = `
+                    <option value="fifth-semester">Fifth Semester</option>
+                    <option value="sixth-semester">Sixth Semester</option>
+                `;
+            } else if (year === "4") {
+                semester.innerHTML = `
+                    <option value="seventh-semester">Seventh Semester</option>
+                    <option value="eighth-semester">Eighth Semester</option>
+                `;
+            }
+
+            // Show sections based on year and semester
+            if (year === "1" && semester.value === "summer") {
                 personalDocumentSection.style.display = "block";
                 paymentSection.style.display = "block";
             } else {
@@ -148,14 +171,7 @@
             <div class="form-group">
                 <label for="semester">Semester</label>
                 <select id="semester" name="semester" class="form-control" required onchange="toggleUploadSections()">
-                    <option value="first-semester">first-semester</option>
-                    <option value="second-semester">second-semester</option>
-                    <option value="third-semester">third-semester</option>
-                    <option value="fourth-semester">fourth-semester</option>
-                    <option value="fifth-semester">fifth-semester</option>
-                    <option value="sixth-semester">sixth-semester</option>
-                    <option value="seventh-semester">seventh-semester</option>
-                    <option value="eighth-semester">eighth-semester</option>
+                    <!-- Semesters will be dynamically inserted here -->
                 </select>
             </div>
 
@@ -210,17 +226,20 @@
             </div>
 
             <div class="form-group">
-                <label for="parent_phone">Parent's Phone Number</label>
-                <input type="tel" id="parent_phone" name="parent_phone" class="form-control" required>
+                <label for="parent_phone">Phone Number</label>
+                <input type="text" id="parent_phone" name="parent_phone" class="form-control" required>
             </div>
 
             <button type="submit" class="btn btn-primary btn-block">Submit</button>
         </form>
-
-        <!-- Success message -->
-        <div id="message" class="alert alert-success mt-4" style="display: none;">
-            Form submitted successfully!
+        <div id="message" class="alert alert-success" style="display: none;">
+            Registration successful! You will be redirected shortly.
         </div>
     </div>
+
+    <!-- Add Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

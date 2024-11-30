@@ -53,6 +53,31 @@
                             <input type="file" id="cidLetter" class="form-control" accept=".pdf" required>
                         </div>
 
+                        <!-- Year and Semester Selection -->
+                        <div class="form-group">
+                            <label for="year">Year</label>
+                            <select id="year" name="year" class="form-control" onchange="checkYearSemester()">
+                                <option value="1">1st Year</option>
+                                <option value="2">2nd Year</option>
+                                <option value="3">3rd Year</option>
+                                <option value="4">4th Year</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="semester">Semester</label>
+                            <select id="semester" name="semester" class="form-control" onchange="checkYearSemester()">
+                                <option value="first-semester">First Semester</option>
+                                <option value="second-semester">Second Semester</option>
+                                <option value="third-semester">Third Semester</option>
+                                <option value="fourth-semester">Fourth Semester</option>
+                                <option value="fifth-semester">Fifth Semester</option>
+                                <option value="sixth-semester">Sixth Semester</option>
+                                <option value="seventh-semester">Seventh Semester</option>
+                                <option value="eighth-semester">Eighth Semester</option>
+                            </select>
+                        </div>
+
                         <!-- Submit Button -->
                         <div class="mt-4 text-center">
                             <button class="btn btn-primary" onclick="submitForm()">
@@ -68,28 +93,66 @@
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        let isFirstYearFirstSemester = false;
+
+        // Function to go back to the registration page
         function goBack() {
-            window.location.href = "registration_form.html"; // Returns to the previous page
+            window.location.href = "registration.html"; // Redirect to the registration page
         }
 
-        function submitForm() {
-            const classXMarksheet = document.getElementById("classXMarksheet").files.length;
-            const classXII_Marksheet = document.getElementById("classXII_Marksheet").files.length;
-            const transferCertificate = document.getElementById("transferCertificate").files.length;
-            const cidLetter = document.getElementById("cidLetter").files.length;
+        // Function to check if the student is 1st Year, 1st Semester
+        function checkYearSemester() {
+            const year = document.getElementById("year").value;
+            const semester = document.getElementById("semester").value;
+            if (year === "1" && semester === "first-semester") {
+                isFirstYearFirstSemester = true;
+                enableDocumentUpload(); // Enable document upload if first year first semester
+            } else {
+                isFirstYearFirstSemester = false;
+                disableDocumentUpload(); // Disable document upload for other years/semesters
+            }
+        }
 
-            // Check if required files are uploaded
-            if (!classXMarksheet || !classXII_Marksheet || !transferCertificate || !cidLetter) {
-                alert("Please upload all required documents.");
-                return;
+        // Function to enable document upload fields
+        function enableDocumentUpload() {
+            document.getElementById("classXMarksheet").disabled = false;
+            document.getElementById("classXII_Marksheet").disabled = false;
+            document.getElementById("transferCertificate").disabled = false;
+            document.getElementById("cidLetter").disabled = false;
+        }
+
+        // Function to disable document upload fields
+        function disableDocumentUpload() {
+            document.getElementById("classXMarksheet").disabled = true;
+            document.getElementById("classXII_Marksheet").disabled = true;
+            document.getElementById("transferCertificate").disabled = true;
+            document.getElementById("cidLetter").disabled = true;
+        }
+
+        // Function to handle form submission
+        function submitForm() {
+            if (isFirstYearFirstSemester) {
+                const classXMarksheet = document.getElementById("classXMarksheet").files.length;
+                const classXII_Marksheet = document.getElementById("classXII_Marksheet").files.length;
+                const transferCertificate = document.getElementById("transferCertificate").files.length;
+                const cidLetter = document.getElementById("cidLetter").files.length;
+
+                // Check if required files are uploaded for first year, first semester students
+                if (!classXMarksheet || !classXII_Marksheet || !transferCertificate || !cidLetter) {
+                    alert("Please upload all required documents.");
+                    return;
+                }
+                alert("All required documents are uploaded. Form submitted successfully.");
+            } else {
+                alert("Skipping document upload. Proceeding to Fee Payment.");
             }
 
-            // Leadership certificate is optional, so no validation for it
-            alert("All required documents are uploaded. Form submitted successfully.");
-            
             // Redirect to Feepayment.html
             window.location.href = "Feepayment.html";
         }
+
+        // Initial check for Year and Semester on page load
+        checkYearSemester();
     </script>
 </body>
 </html>
