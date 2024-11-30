@@ -8,18 +8,16 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Add FontAwesome Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/document.html">
-    !-- Include the updated "Next" button logic -->
-    <button type="button" class="btn btn-info btn-block" onclick="goToNextPage()">Next</button>
     <script>
         function showMessage(event) {
             event.preventDefault(); // Prevent the default form submission
             document.getElementById("message").style.display = "block"; // Show the success message
+
+            // Redirect to the next page (document.html) after a delay
+            setTimeout(() => {
+                window.location.href = "document.html"; // Navigate to document.html
+            }, 2000); // 2-second delay
         }
-        function goToNextPage() {
-            window.location.href = "document.html"; // Redirect to the next page
-        }
-        
 
         function toggleUploadSections() {
             const year = document.getElementById("year").value;
@@ -28,17 +26,12 @@
             const paymentSection = document.getElementById("paymentSection");
 
             // Show both sections for 1st year, summer semester students only
-            if (year === "1" && (semester === "summer")) {
+            if (year === "1" && semester === "summer") {
                 personalDocumentSection.style.display = "block";
                 paymentSection.style.display = "block";
-            }
-            // Show only payment section for all other years and semesters
-            else {
+            } else {
                 personalDocumentSection.style.display = "none";
                 paymentSection.style.display = "block";
-            }
-            function goToNextPage() {
-                window.location.href = "document_upload.html"; // Navigates to the next page
             }
         }
 
@@ -88,15 +81,11 @@
                 option.text = program;
                 programSelect.appendChild(option);
             });
-            
         }
     </script>
 </head>
 <body>
     <div class="container my-5">
-        <!-- Back Arrow -->
-        <a class="btn btn-outline-secondary mb-4" href="mode_of_study.html"><i class="fas fa-arrow-left"></i> Back</a>
-
         <h3 class="text-center mb-4">Student Registration Form</h3>
         <form id="registrationForm" onsubmit="showMessage(event)">
             <h4>Student Details</h4>
@@ -159,10 +148,14 @@
             <div class="form-group">
                 <label for="semester">Semester</label>
                 <select id="semester" name="semester" class="form-control" required onchange="toggleUploadSections()">
-                    <option value="spring">Spring</option>
-                    <option value="summer">Summer</option>
-                    <option value="autumn">Autumn</option>
-                    <option value="winter">Winter</option>
+                    <option value="first-semester">first-semester</option>
+                    <option value="second-semester">second-semester</option>
+                    <option value="third-semester">third-semester</option>
+                    <option value="fourth-semester">fourth-semester</option>
+                    <option value="fifth-semester">fifth-semester</option>
+                    <option value="sixth-semester">sixth-semester</option>
+                    <option value="seventh-semester">seventh-semester</option>
+                    <option value="eighth-semester">eighth-semester</option>
                 </select>
             </div>
 
@@ -217,25 +210,17 @@
             </div>
 
             <div class="form-group">
-                <label for="parent_phone">Phone Number</label>
-                <input type="text" id="parent_phone" name="parent_phone" class="form-control" required>
+                <label for="parent_phone">Parent's Phone Number</label>
+                <input type="tel" id="parent_phone" name="parent_phone" class="form-control" required>
             </div>
 
-
-            <!-- Submit and Next Button -->
             <button type="submit" class="btn btn-primary btn-block">Submit</button>
-            <button type="Next" class="btn btn-info btn-block">Next</button>
         </form>
 
-        <!-- Success Message -->
+        <!-- Success message -->
         <div id="message" class="alert alert-success mt-4" style="display: none;">
-            Registration form successfully submitted!
+            Form submitted successfully!
         </div>
     </div>
-
-    <!-- Add Bootstrap and jQuery JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
