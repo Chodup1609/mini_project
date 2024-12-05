@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fee Payment</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-light">
     <div class="container my-5">
-        <!-- Back Arrow Button -->
         <div class="d-flex justify-content-start mb-3">
             <button class="btn btn-outline-primary" onclick="goBack()">
                 <i class="fa-solid fa-arrow-left"></i> Back
@@ -26,6 +23,8 @@
                     </div>
                     <div class="card-body">
                         <p class="text-center">Please review the fee structure below. Once you have completed the payment, kindly upload your payment screenshot and provide your journal number for verification.</p>
+
+                        <!-- Fee Structure List -->
                         <ul class="list-group mb-4">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <span><i class="fa-solid fa-user-plus"></i> New Students</span>
@@ -39,33 +38,17 @@
                                 <span><i class="fa-solid fa-coins"></i> Self-Funding</span>
                                 <span class="badge bg-success rounded-pill">NU 46925</span>
                             </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span><i class="fa-solid fa-book-open"></i> Back Semester</span>
-                                <span class="badge bg-danger rounded-pill">NU 27000</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span><i class="fa-solid fa-briefcase"></i> In-Service</span>
-                                <span class="badge bg-info rounded-pill">NU 44925</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span><i class="fa-solid fa-clipboard-check"></i> Back Paper</span>
-                                <span class="badge bg-warning rounded-pill">NU 9000</span>
-                            </li>
                         </ul>
 
                         <!-- Upload Payment Screenshot Section -->
                         <div class="mt-4">
-                            <label for="paymentScreenshot" class="form-label">
-                                <i class="fa-solid fa-upload"></i> Upload Payment Screenshot
-                            </label>
+                            <label for="paymentScreenshot" class="form-label"><i class="fa-solid fa-upload"></i> Upload Payment Screenshot</label>
                             <input type="file" id="paymentScreenshot" class="form-control" accept="image/*" onchange="previewImage(event)">
                         </div>
 
                         <!-- Journal Number Input Section -->
                         <div class="mt-4">
-                            <label for="journalNumber" class="form-label">
-                                <i class="fa-solid fa-key"></i> Journal Number
-                            </label>
+                            <label for="journalNumber" class="form-label"><i class="fa-solid fa-key"></i> Journal Number</label>
                             <input type="text" id="journalNumber" class="form-control" placeholder="Enter your journal number">
                         </div>
 
@@ -86,14 +69,10 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function goBack() {
-            // Debugging alert
-            alert('Navigating to document.html');
-            // Navigate to document.html
-            window.location.href = 'document.html';
+            window.location.href = 'document.html'; // Go back to document upload page
         }
 
         function previewImage(event) {
@@ -123,10 +102,14 @@
                 return;
             }
 
-            // Debugging alert
-            alert('You have successfully Registerd');
-            // Navigate to home.html
-            window.location.href = 'home.html';
+            // Save the payment details to localStorage
+            localStorage.setItem('paymentScreenshot', document.getElementById('paymentScreenshot').files[0]?.name || 'Not Uploaded');
+            localStorage.setItem('journalNumber', journalNumber);
+
+            alert('Payment details submitted successfully.');
+
+            // Redirect to diploma year page
+            window.location.href = 'index.html'; 
         }
     </script>
 </body>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details Table</title>
+    <!-- Add Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Add Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .back-button {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+        .back-button i {
+            margin-right: 8px;
+        }
+        .table-container {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: white;
+        }
+        .table-responsive {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <!-- Back Button -->
+        <a href="home.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+
+        <h3 class="text-center mb-4 mt-4">Student Details Table</h3>
+        
+        <div class="table-container">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Mode of Study</th>
+                            <th>Date of Birth</th>
+                            <th>CID</th>
+                            <th>Department</th>
+                            <th>Program</th>
+                            <th>Year</th>
+                            <th>Semester</th>
+                            <th>Gender</th>
+                            <th>Blood Group</th>
+                            <th>Permanent Address</th>
+                            <th>Present Address</th>
+                            <th>Student Phone</th>
+                            <th>Parent Name</th>
+                            <th>Relationship</th>
+                            <th>Occupation</th>
+                            <th>Parent Phone</th>
+                            <th>Journal No.</th>
+                            <th>Documents</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Example Row 1 -->
+                        <tr>
+                            <td>Dorji Chodup</td>
+                            <td>Self Funding</td>
+                            <td>2000-01-15</td>
+                            <td>10906001609</td>
+                            <td>Information and Technology</td>
+                            <td>Diploma in Computer System and Network</td>
+                            <td>1</td>
+                            <td>First Semester</td>
+                            <td>Male</td>
+                            <td>O+</td>
+                            <td>Thimphu/Dzongkhag/Chang</td>
+                            <td>Paro/Dzongkhag/Wangchang</td>
+                            <td>17676762</td>
+                            <td>Sangay</td>
+                            <td>Mother</td>
+                            <td>Teacher</td>
+                            <td>17703023</td>
+                            <td>217376</td>
+                            <td><a href="document/05230016-Layout1.pdf" download><i class="fas fa-download"></i> Document1.pdf</a></td>
+                        </tr>
+                        <!-- Example Row 2 -->
+                        <tr>
+                            <td>Sonam</td>
+                            <td>Gov Scholarship (New Student)</td>
+                            <td>1999-07-20</td>
+                            <td>10906004876</td>
+                            <td>Civil Engineering and Surveying</td>
+                            <td>Diploma in Surveying</td>
+                            <td>2</td>
+                            <td>Third Semester</td>
+                            <td>Female</td>
+                            <td>A-</td>
+                            <td>Punakha/Dzongkhag/Gewog</td>
+                            <td>Bumthang/Dzongkhag/Chokhor</td>
+                            <td>77883401</td>
+                            <td>Kinley</td>
+                            <td>Father</td>
+                            <td>Farmer</td>
+                            <td>17867545</td>
+                            <td>123654</td>
+                            <td><a href="document/05230016-Layout1.pdf" download><i class="fas fa-download"></i> Document2.pdf</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

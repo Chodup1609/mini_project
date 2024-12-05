@@ -20,7 +20,7 @@
         body {
             font-family: 'Poppins', sans-serif;
             background: #f5f5f5;
-            background-image: url('https://www.transparenttextures.com/patterns/scribble-light.png'); /* Subtle Doodle Texture */
+            background-image: url("image/WhatsApp\ Image\ 2024-09-01\ at\ 01.56.48_ebbe23b9.jpg"); /* Subtle Doodle Texture */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -164,9 +164,20 @@
             alert("Google sign-in functionality to be integrated.");
         }
 
+        // Admin, Student, and Finance credentials
         const adminCredentials = {
             username: "admin",
             password: "admin123"
+        };
+
+        const studentCredentials = {
+            username: "05230115",
+            password: "12345678"
+        };
+
+        const financeCredentials = {
+            username: "finance",
+            password: "12345678"
         };
 
         document.getElementById("loginForm").addEventListener("submit", function (event) {
@@ -174,9 +185,22 @@
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
 
+            // Check credentials for admin
             if (username === adminCredentials.username && password === adminCredentials.password) {
-                alert("Login successful!");
-            } else {
+                alert("Admin login successful!");
+                window.location.href = "admin.html"; // Redirect to admin home page
+            } 
+            // Check credentials for student
+            else if (username === studentCredentials.username && password === studentCredentials.password) {
+                alert("Student login successful!");
+                window.location.href = "home.html"; // Redirect to student home page
+            } 
+            // Check credentials for finance
+            else if (username === financeCredentials.username && password === financeCredentials.password) {
+                alert("Finance login successful!");
+                window.location.href = "finance.html"; // Redirect to finance home page
+            } 
+            else {
                 alert("Invalid username or password!");
             }
         });

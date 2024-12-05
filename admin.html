@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Admin Dashboard</title>
+    <style>
+        /* Additional CSS for the sidebar and interface */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            background: #343a40;
+            transition: transform 0.3s ease;
+            transform: translateX(0);
+        }
+
+        .sidebar.hidden {
+            transform: translateX(-100%);
+        }
+
+        .sidebar a {
+            color: #ffffff;
+        }
+
+        .sidebar a:hover {
+            background: #495057;
+        }
+
+        .scrollable-content {
+            overflow-x: auto;
+            white-space: nowrap;
+            transition: margin-left 0.3s ease;
+        }
+
+        .content {
+            padding: 2rem;
+            margin-left: 260px;
+        }
+
+        .content.shift {
+            margin-left: 0;
+        }
+
+        .toggle-icon {
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            color: #343a40; 
+            z-index: 200; 
+        }
+
+        .profile-header {
+            float: right;
+        }
+
+        .d-none {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Toggle Icon -->
+<i class="toggle-icon fas fa-bars" id="toggleSidebar"></i>
+
+<!-- Sidebar -->
+<div class="sidebar p-3" id="sidebar">
+    <h4 class="text-white">Admin Panel</h4>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="#">User Management</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" id="changePasswordLink">Change Password</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" id="settingsLink">Settings</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Reports</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="login.html">Logout</a>
+        </li>
+    </ul>
+</div>
+
+<!-- Main Content -->
+<div class="content p-4 scrollable-content" id="mainContent">
+    <h1 class="mt-4">Dashboard</h1>
+    
+    <div class="profile-header">
+        <span class="badge badge-primary" id="adminProfile"></span>
+    </div>
+
+    <h2 class="mt-4">Add New User</h2>
+    <form id="addUserForm">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" required placeholder="Enter username">
+        </div>
+        <div class="form-group">
+            <label for="email">Email (Gmail)</label>
+            <input type="email" class="form-control" id="email" required placeholder="Enter Gmail">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" required placeholder="Enter password">
+        </div>
+        <div class="form-group">
+            <label for="role">Role</label>
+            <select class="form-control" id="role" required>
+                <option value="">Choose role</option>
+                <option value="student">Student</option>
+                <option value="staff">Staff</option>
+                <option value="admin">Admin</option>
+                <option value="finance">Finance</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add User</button>
+    </form>
+
+    <h2 class="mt-4">User List</h2>
+    <div class="d-flex justify-content-between mb-3">
+        <input type="text" class="form-control" id="searchUser" placeholder="Search Users..." />
+    </div>
+    <div id="userList" class="list-group"></div>
+
+    <h2 class="mt-4">Recent Activity</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Activity</th>
+                    <th>User</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamic activities will be added here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Settings Page -->
+<div class="content p-4 scrollable-content d-none" id="settingsPage">
+    <h1 class="mt-4">Settings</h1>
+    
+    <h2>Switch Account</h2>
+    <form id="switchAccountForm">
+        <div class="form-group">
+            <label for="switchUsername">Username</label>
+            <input type="text" class="form-control" id="switchUsername" required placeholder="Enter username">
+        </div>
+        <div class="form-group">
+            <label for="switchPassword">Password</label>
+            <input type="password" class="form-control" id="switchPassword" required placeholder="Enter password">
+        </div>
+        <button type="submit" class="btn btn-primary">Switch Account</button>
+    </form>
+
+    <h2 class="mt-4">Notification Settings</h2>
+    <div class="form-group">
+        <label for="emailNotifications">Email Notifications</label>
+        <select class="form-control" id="emailNotifications">
+            <option value="enabled">Enabled</option>
+            <option value="disabled">Disabled</option>
+        </select>
+    </div>
+    
+    <h2 class="mt-4">User Preferences</h2>
+    <div class="form-group">
+        <label for="theme">Theme</label>
+        <select class="form-control" id="theme">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+        </select>
+    </div>
+
+    <h2 class="mt-4">Security Settings</h2>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="twoFactorAuth">
+        <label class="form-check-label" for="twoFactorAuth">
+            Enable Two-Factor Authentication
+        </label>
+    </div>
+</div>
+
+<!-- Change Password Modal -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="changePasswordModalLabel">Change Admin Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span>×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="changePasswordForm">
+            <div class="form-group">
+                <label for="currentPassword">Current Password</label>
+                <input type="password" class="form-control" id="currentPassword" required placeholder="Current Password">
+            </div>
+            <div class="form-group">
+                <label for="newPassword">New Password</label>
+                <input type="password" class="form-control" id="newPassword" required placeholder="New Password">
+            </div>
+            <div class="form-group">
+                <label for="confirmNewPassword">Confirm New Password</label>
+                <input type="password" class="form-control" id="confirmNewPassword" required placeholder="Confirm New Password">
+            </div>
+            <div class="text-danger" id="passwordErrorMessage"></div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="submitChangePassword">Change Password</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    // Sidebar Toggle
+    const sidebar = document.getElementById('sidebar');
+    const toggleSidebar = document.getElementById('toggleSidebar');
+    const mainContent = document.getElementById('mainContent');
+    toggleSidebar.addEventListener('click', () => {
+        sidebar.classList.toggle('hidden');
+        mainContent.classList.toggle('shift');
+    });
+
+    // Change Password Modal
+    const changePasswordLink = document.getElementById('changePasswordLink');
+    const changePasswordModal = document.getElementById('changePasswordModal');
+    changePasswordLink.addEventListener('click', () => {
+        $('#changePasswordModal').modal('show');
+    });
+
+    // User Management and User List Search
+    const searchUser = document.getElementById('searchUser');
+    const userList = document.getElementById('userList');
+    const addUserForm = document.getElementById('addUserForm');
+
+    // Simulated user list (replace with database logic)
+    const users = [
+        { username: 'john_doe', email: 'john.doe@gmail.com', role: 'Admin' },
+        { username: 'jane_doe', email: 'jane.doe@gmail.com', role: 'Student' },
+    ];
+
+    // Display user list
+    function displayUsers() {
+        userList.innerHTML = '';
+        users.forEach(user => {
+            const userItem = document.createElement('div');
+            userItem.classList.add('list-group-item');
+            userItem.textContent = `${user.username} - ${user.email} - ${user.role}`;
+            userList.appendChild(userItem);
+        });
+    }
+
+    // Search user functionality
+    searchUser.addEventListener('input', () => {
+        const searchText = searchUser.value.toLowerCase();
+        const filteredUsers = users.filter(user => user.username.toLowerCase().includes(searchText));
+        userList.innerHTML = '';
+        filteredUsers.forEach(user => {
+            const userItem = document.createElement('div');
+            userItem.classList.add('list-group-item');
+            userItem.textContent = `${user.username} - ${user.email} - ${user.role}`;
+            userList.appendChild(userItem);
+        });
+    });
+
+    // Handle Add User Form
+    addUserForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const role = document.getElementById('role').value;
+        users.push({ username, email, role });
+        displayUsers();
+        addUserForm.reset();
+    });
+
+    // Display user list initially
+    displayUsers();
+</script>
+
+</body>
+</html>
